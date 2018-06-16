@@ -10,6 +10,9 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "core/version.h"
 #include "settings.h"
 
+// PATCH_BY_NEBULAIM, Add by @benqi
+#define PATCH_BY_NEBULAIM
+
 constexpr str_const AppNameOld = "Telegram Win (Unofficial)";
 constexpr str_const AppName = "Telegram Desktop";
 
@@ -156,6 +159,43 @@ struct BuiltInDc {
 	int port;
 };
 
+#ifdef PATCH_BY_NEBULAIM
+// PATCH_BY_NEBULAIM, Add by @benqi
+#define _testDcIP4   "47.100.25.99"
+// #define _testDcIP4   "127.0.0.1"
+// #define _testDcIP6   "::1"
+// #define _testDcIP6   "127.0.0.1"
+// fe80::c0a8:167
+#define _testDcPort 12345
+
+static const BuiltInDc _builtInDcs[] = {
+  { 1, _testDcIP4, _testDcPort },
+  { 2, _testDcIP4, _testDcPort },
+  { 3, _testDcIP4, _testDcPort },
+  { 4, _testDcIP4, _testDcPort },
+  { 5, _testDcIP4, _testDcPort }
+};
+
+static const BuiltInDc _builtInDcsIPv6[] = {
+//  { 1, "::1", _testDcPort },
+//  { 2, "::1", _testDcPort },
+//  { 3, "::1", _testDcPort },
+//  { 4, "::1", _testDcPort },
+//  { 5, "::1", _testDcPort }
+};
+
+static const BuiltInDc _builtInTestDcs[] = {
+  { 1, _testDcIP4, _testDcPort },
+  { 2, _testDcIP4, _testDcPort },
+  { 3, _testDcIP4, _testDcPort }
+};
+
+static const BuiltInDc _builtInTestDcsIPv6[] = {
+//  { 1, "::1", _testDcPort },
+//  { 2, "::1", _testDcPort },
+//  { 3, "::1", _testDcPort }
+};
+#else
 static const BuiltInDc _builtInDcs[] = {
 	{ 1, "149.154.175.50", 443 },
 	{ 2, "149.154.167.51", 443 },
@@ -183,6 +223,7 @@ static const BuiltInDc _builtInTestDcsIPv6[] = {
 	{ 2, "2001:67c:4e8:f002::e", 443 },
 	{ 3, "2001:b28:f23d:f003::e", 443 }
 };
+#endif
 
 inline const BuiltInDc *builtInDcs() {
 	return cTestMode() ? _builtInTestDcs : _builtInDcs;

@@ -124,6 +124,9 @@ bool IsPrimeAndGoodCheck(const openssl::BigNum &prime, int g) {
 }
 
 bool IsPrimeAndGood(base::const_byte_span primeBytes, int g) {
+#ifdef PATCH_BY_NEBULAIM
+  return true;
+#else
 	static constexpr unsigned char GoodPrime[] = {
 		0xC7, 0x1C, 0xAE, 0xB9, 0xC6, 0xB1, 0xC9, 0x04, 0x8E, 0x6C, 0x52, 0x2F, 0x70, 0xF1, 0x3F, 0x73,
 		0x98, 0x0D, 0x40, 0x23, 0x8E, 0x3E, 0x21, 0xC1, 0x49, 0x34, 0xD0, 0x37, 0x56, 0x3D, 0x93, 0x0F,
@@ -149,6 +152,7 @@ bool IsPrimeAndGood(base::const_byte_span primeBytes, int g) {
 	}
 
 	return IsPrimeAndGoodCheck(openssl::BigNum(primeBytes), g);
+#endif
 }
 
 std::vector<gsl::byte> CreateAuthKey(
