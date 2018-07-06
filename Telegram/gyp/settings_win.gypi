@@ -22,7 +22,7 @@
         'VCCLCompilerTool': {
           'ProgramDataBaseFileName': '$(OutDir)\\$(ProjectName).pdb',
           'DebugInformationFormat': '3',          # Program Database (/Zi)
-          'WarnAsError': 'true',
+          'WarnAsError': 'false',
           'AdditionalOptions': [
             '/std:c++latest',
             '/permissive-',
