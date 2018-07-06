@@ -141,6 +141,7 @@ Open **x86 Native Tools Command Prompt for VS 2017.bat**, go to ***BuildPath*** 
     git apply ../../../tdesktop/Telegram/Patches/qtbase_5_6_2.diff
     cd ..
 
+
     configure -debug-and-release -force-debug-info -opensource -confirm-license -static -I "%cd%\..\openssl\Release\include" -no-opengl -openssl-linked OPENSSL_LIBS_DEBUG="%cd%\..\openssl\Debug\lib\ssleay32.lib %cd%\..\openssl\Debug\lib\libeay32.lib" OPENSSL_LIBS_RELEASE="%cd%\..\openssl\Release\lib\ssleay32.lib %cd%\..\openssl\Release\lib\libeay32.lib" -mp -nomake examples -nomake tests -platform win32-msvc2015
 
     jom -j4
@@ -159,6 +160,29 @@ After, call **gyp\refresh.bat** once again.
 * Open ***BuildPath*\\tdesktop\\Telegram\\Telegram.sln** in Visual Studio 2017
 * Select Telegram project and press Build > Build Telegram (Debug and Release configurations)
 * The result Telegram.exe will be located in **D:\TBuild\tdesktop\out\Debug** (and **Release**)
+
+### error set
+#### qt build error:
+
+    I faced this build error issue and I've found the workaround solution.
+    It's dirty but maybe working well in your environment too.
+    clean all (I think you'd better restart from github clone step.)
+    open \TBuild\Libraries\qt5_6_2\qtbase\tools\configure\environment.cpp
+    find QString Environment::msvcVersion() method.
+    replace like below
+    //QString version = execute(command, &returnValue);
+    QString version = "Microsoft (R) C/C++ Optimizing Compiler Version 19.12.25835 for x86";
+    ! please check your compiler version to execute cl.exe in cmd.exe by yourself and then fix the version number text above. MUST BE    ENGLISH TEXT!
+
+    configure
+    jom
+
+#### telegram code error:
+    @kirsan31 For now you can replace "auto events() const {" with "producer<Value> events() const {" and it works.
+    Also you'll need to disable warning 4180, otherwise QMap<bool(*)(), smth> throws a warning about "const Ptr*" with Ptr being a pointer to a function.
+    But this is a regression :( I hope I'll find time to prepare a minimal example to reproduce that and submit it to msvc team.
+
+ 
 
 ### Qt Visual Studio Tools
 
