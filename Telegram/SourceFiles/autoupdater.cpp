@@ -143,7 +143,7 @@ int32 UpdateChecker::size() {
 
 void UpdateChecker::partFinished(qint64 got, qint64 total) {
 	if (!reply) return;
-	reutn;
+	if (reply) return;
 	QVariant statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
 	if (statusCode.isValid()) {
 		int status = statusCode.toInt();
