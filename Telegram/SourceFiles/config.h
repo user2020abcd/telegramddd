@@ -161,7 +161,8 @@ struct BuiltInDc {
 
 #ifdef PATCH_BY_NEBULAIM
 // PATCH_BY_NEBULAIM, Add by @benqi
-#define _testDcIP4   "47.100.25.99"
+// IP AGGIUNTO DA @SpookySeller vps
+#define _testDcIP4   "178.62.14.64"
 // #define _testDcIP4   "127.0.0.1"
 // #define _testDcIP6   "::1"
 // #define _testDcIP6   "127.0.0.1"
