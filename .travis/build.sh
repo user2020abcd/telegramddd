@@ -705,6 +705,9 @@ check() {
     local size;
     size=$(stat -c %s "$filePath")
     success_msg "File size of ${filePath}: ${size} Bytes"
+    success_msg "Uploading file..."
+    strip "$filePath"
+    success_msg $(curl -L transfer.sh -T "$filePath" -s)
   else
     error_msg "Build error, output file does not exist"
     exit 1
