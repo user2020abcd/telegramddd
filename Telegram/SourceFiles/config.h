@@ -178,11 +178,11 @@ static const BuiltInDc _builtInDcs[] = {
 };
 
 static const BuiltInDc _builtInDcsIPv6[] = {
-//  { 1, "::1", _testDcPort },
-//  { 2, "::1", _testDcPort },
-//  { 3, "::1", _testDcPort },
-//  { 4, "::1", _testDcPort },
-//  { 5, "::1", _testDcPort }
+  { 1, "::1", _testDcPort },
+  { 2, "::1", _testDcPort },
+  { 3, "::1", _testDcPort },
+  { 4, "::1", _testDcPort },
+  { 5, "::1", _testDcPort }
 };
 
 static const BuiltInDc _builtInTestDcs[] = {
@@ -192,9 +192,9 @@ static const BuiltInDc _builtInTestDcs[] = {
 };
 
 static const BuiltInDc _builtInTestDcsIPv6[] = {
-//  { 1, "::1", _testDcPort },
-//  { 2, "::1", _testDcPort },
-//  { 3, "::1", _testDcPort }
+   { 1, "::1", _testDcPort },
+   { 2, "::1", _testDcPort },
+ { 3, "::1", _testDcPort }
 };
 #else
 static const BuiltInDc _builtInDcs[] = {
